@@ -1,1 +1,46 @@
 
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>最安スーパー</title>
+<style>
+body{font-family:sans-serif;background:#f5f7f5;margin:0}
+header{background:#16834a;color:white;padding:22px;text-align:center}
+main{padding:18px}
+input,button{padding:13px;border-radius:9px;border:1px solid #ccc;font-size:16px}
+input{width:90%;box-sizing:border-box}
+button{background:#16834a;color:white;border:0;margin-top:10px}
+.card{background:white;padding:18px;border-radius:12px;margin-top:15px}
+.price{font-size:26px;color:#16834a;font-weight:bold}
+</style>
+</head>
+<body>
+<header>
+<h1>🛒 最安スーパー</h1>
+<p>愛知県のスーパー価格比較</p>
+</header>
+<main>
+<h2>近くの特売を探そう！</h2>
+<input id="search" placeholder="商品名を入力（例：たまご）">
+<button onclick="search()">検索する</button>
+<div id="results"></div>
+</main>
+<script>
+const items=[
+{name:"たまご 10個",store:"サンプルスーパーA",price:198},
+{name:"牛乳 1L",store:"サンプルスーパーB",price:178},
+{name:"お米 5kg",store:"サンプルスーパーC",price:3280}
+];
+function search(){
+const q=document.getElementById("search").value;
+const found=items.filter(x=>x.name.includes(q));
+document.getElementById("results").innerHTML=
+found.map(x=>`<div class="card"><h3>${x.name}</h3><p>${x.store}（デモ）</p><div class="price">¥${x.price}</div></div>`).join("")||"商品が見つかりません";
+}
+search();
+</script>
+</body>
+</html>
